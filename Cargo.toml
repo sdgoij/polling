@@ -33,6 +33,13 @@ version = "1.0.5"
 features = ["event", "fs", "pipe", "process", "std", "time"]
 default-features = false
 
+# Minix's `poll` backend uses only `event`/`fs`/`pipe`; with no kqueue or pidfd
+# path, `process` and `time` stay off and their surface stays out of the port.
+[target.'cfg(target_os = "minix")'.dependencies.rustix]
+version = "1.0.5"
+features = ["event", "fs", "pipe", "std"]
+default-features = false
+
 [target.'cfg(windows)'.dependencies]
 concurrent-queue = "2.2.0"
 pin-project-lite = "0.2.9"

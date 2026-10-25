@@ -455,7 +455,7 @@ fn cvt_mode_as_remove(mode: PollMode) -> io::Result<bool> {
     }
 }
 
-#[cfg(unix)]
+#[cfg(any(unix, target_os = "minix"))]
 mod syscall {
     pub(super) use rustix::event::{PollFd, PollFlags};
 

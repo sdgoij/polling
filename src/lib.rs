@@ -107,6 +107,7 @@ cfg_if! {
         target_os = "hermit",
         target_os = "fuchsia",
         target_os = "horizon",
+        target_os = "minix",
         unix,
     ))] {
         mod poll;
@@ -1049,11 +1050,13 @@ impl fmt::Debug for Poller {
 }
 
 cfg_if! {
-    if #[cfg(any(unix, target_os = "hermit"))] {
+    if #[cfg(any(unix, target_os = "hermit", target_os = "minix"))] {
         #[cfg(unix)]
         use std::os::unix::io::{AsRawFd, RawFd, AsFd, BorrowedFd};
         #[cfg(target_os = "hermit")]
         use std::os::hermit::io::{AsRawFd, RawFd, AsFd, BorrowedFd};
+        #[cfg(target_os = "minix")]
+        use std::os::fd::{AsRawFd, RawFd, AsFd, BorrowedFd};
 
         /// A resource with a raw file descriptor.
         pub trait AsRawSource {
