@@ -1055,8 +1055,6 @@ cfg_if! {
         use std::os::unix::io::{AsRawFd, RawFd, AsFd, BorrowedFd};
         #[cfg(target_os = "hermit")]
         use std::os::hermit::io::{AsRawFd, RawFd, AsFd, BorrowedFd};
-        #[cfg(target_os = "minix")]
-        use std::os::fd::{AsRawFd, RawFd, AsFd, BorrowedFd};
 
         /// A resource with a raw file descriptor.
         pub trait AsRawSource {
