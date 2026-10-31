@@ -37,7 +37,7 @@ default-features = false
 # path, `process` and `time` stay off and their surface stays out of the port.
 [target.'cfg(target_os = "minix")'.dependencies.rustix]
 version = "1.0.5"
-features = ["event", "fs", "pipe", "std"]
+features = ["event", "fs", "pipe", "std", "minix"]
 default-features = false
 
 [target.'cfg(windows)'.dependencies]
